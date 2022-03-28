@@ -1,0 +1,66 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 13vw 0;
+    box-shadow: $box-shadow-dark;
+
+    @media only screen and (max-width: $bp-large) {
+        padding: 5px 5px 0;
+    }
+
+    &__logo {
+        width: 15rem;
+
+        @media only screen and (max-width: $bp-small) {
+            width: 10rem;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex: .9;
+        font-size: 1.7rem;
+
+        @media only screen and (max-width: $bp-small) {
+            justify-content: flex-end;
+        }
+
+        &-left {
+            margin-bottom: 1rem;
+        }
+        
+        &-link {
+            font-weight: bold;
+
+            &:not(:last-child) {
+                margin-right: 3rem;
+            }
+
+            &:hover {
+                color: $color-primary;
+            }
+
+        }
+    }
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: $color-grey-light-1;
+    cursor: pointer;
+
+    &__logo {
+        width: 4rem;
+
+        @media only screen and (max-width: $bp-small) {
+            width: 3rem;
+        }
+    }
+}

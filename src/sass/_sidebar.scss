@@ -1,0 +1,53 @@
+.sidebar {
+    background-color: $color-grey-light-1;
+    font-size: 1.7rem;
+    flex: 0.25;
+    height: 100%;
+    
+    @media only screen and (max-width: $bp-medium) {
+        flex: 0.35;
+    }
+
+    &__item {
+        list-style: none;
+        padding: 15px;
+        border-bottom: 1px solid #000;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $color-grey-light-2;
+        }
+
+        &.active {
+            background-color: $color-grey-light-2;
+        }
+    }
+
+    &-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $color-primary;
+        color: #fff;
+        font-size: 2rem;
+        padding: 1.5rem 3rem;
+        cursor: pointer;
+    }
+
+    &-wrapper {
+        background-color: #fff;
+        position: absolute;
+        width: 100%;
+        visibility: hidden;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transition: visibility .2s, transform .3s ease-out;
+    }
+}
+
+.sidebar-active {
+    visibility: visible;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: visibility .2s, transform .3s ease-in;
+}

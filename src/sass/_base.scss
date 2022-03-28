@@ -1,0 +1,49 @@
+$bp-largest: 1200px; // 1200px
+$bp-large: 1000px; // 1000px
+$bp-medium: 800px; // 800px
+$bp-small: 500px; // 800px
+
+$color-grey-light-1: rgba(0,0,0,0.2);
+$color-grey-light-2: #aaa;
+$color-grey-light-3: #999;
+
+$color-primary: #e05269;
+$color-primary-dark: #ad1f36;
+
+$box-shadow-dark: 0 10px 10px -10px #000;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+
+    @media only screen and (max-width: $bp-largest) {
+        font-size: 58%;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.button {
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+    background-color: $color-primary;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: $color-primary-dark;
+    }
+}
