@@ -3,15 +3,16 @@ import { Component } from './helper'
 
 export default class Product extends Component {
 
-    constructor(product, renderHookId) {
+    constructor(product, addProductToCart, renderHookId) {
         super(renderHookId)
         this.product = product
+        this.addProductToCart = addProductToCart
         this.render()
     }
 
-    // addToCart() {
-    //     App.addProductToCart(this.product)
-    // }
+    addToCart() {
+        this.addProductToCart(this.product)
+    }
 
     render() {
         let productItem = this.createRootElement("div", "product");
@@ -29,7 +30,7 @@ export default class Product extends Component {
             </div>
         `
 
-        const addCartButton = productItem.querySelector('button');
-        // addCartButton.addEventListener('click', this.addToCart.bind(this));
+        const addCartButton = productItem.querySelector('button-element button');
+        addCartButton.addEventListener('click', this.addToCart.bind(this));
     }
 }
