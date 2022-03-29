@@ -1,8 +1,13 @@
 import cartegories from '../../../server/categories/index.get.json'
 
 export default class Sidebar extends HTMLElement {
-    constructor() {
+    constructor(fetchProducts) {
       super();
+      this.fetchProducts = fetchProducts
+    }
+
+    clickHandler(id) {
+        this.fetchProducts(id)  
     }
   
     connectedCallback() {
@@ -15,9 +20,7 @@ export default class Sidebar extends HTMLElement {
             sidebarListItem.setAttribute("class", "sidebar__item")
             sidebarListItem.textContent = category.name
 
-            sidebarListItem.addEventListener('click', () => {
-                window.location.href = `/products/${category.id}`
-            })
+            sidebarListItem.addEventListener('click', () => this.clickHandler(category.id))
 
             sidebarList.append(sidebarListItem)
         }

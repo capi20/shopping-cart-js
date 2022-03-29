@@ -40,15 +40,39 @@ class App {
   }
 }
 
-async function fetchProducts() {
+function addDOMElements() {
   App.init()
-  let response = await fetch("http://localhost:3000/productdata");
-  let products = await response.json();
+  const mainContainer = document.querySelector('main')
+  mainContainer.setAttribute("class", "product__wrapper")
+
+  mainContainer.append(new Sidebar(fetchProducts))
+
+  const prodList = document.createElement('section')
+  prodList.setAttribute("class", "products__list")
+  prodList.setAttribute("id", "prod-list")
+
+  mainContainer.append(prodList)
+
+  fetchProducts()
+}
+
+async function fetchProducts(id) {
+  let response, products
+
+  if (id) {
+    response = await fetch(`http://localhost:3000/products/${id}`)
+  } else {
+    response = await fetch("http://localhost:3000/productdata");
+  }
+  products = await response.json();
+
   displayProducts(products);
 }
 
 function displayProducts(products) {
   const prodList = document.getElementById('prod-list')
+  prodList.innerHTML = ''
+
     for(const product of products) {
         new Product(product, App.addProductToCart.bind(App), prodList)
     }
@@ -56,4 +80,4 @@ function displayProducts(products) {
 
 document.getElementById('cart-logo').addEventListener('click', App.openModal.bind(App))
 
-window.addEventListener("DOMContentLoaded", fetchProducts);
+window.addEventListener("DOMContentLoaded", addDOMElements);
