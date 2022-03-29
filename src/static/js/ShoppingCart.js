@@ -69,5 +69,7 @@ export default class ShoppingCart {
         this.state = {...this.state, ...updatedState} 
 
         this.updateCartCount()
+
+        return this.state
     }
 }

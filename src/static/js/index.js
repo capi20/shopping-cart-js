@@ -5,7 +5,7 @@ import ShoppingCart from './ShoppingCart'
 import ProductModal from './ProductModal'
 
 class App {
-  cartItems = {}
+  cartData = {}
 
   static init() {
       this.cart = new ShoppingCart()
@@ -16,25 +16,27 @@ class App {
   static openModal() {
     this.modal.open()
 
-    if (this.cartItems) {
-      const modal = document.querySelector('modal-element .modal-wrapper .modal .modal__middle')
-      modal.innerHTML = ''
+    if (this.cartData) {
+      const hookNode = document.querySelector('modal-element .modal-wrapper .modal .modal__middle')
+      const parentEl = document.querySelector('modal-element .modal-wrapper .modal')
+      hookNode.innerHTML = ''
 
-      Object.keys(this.cartItems.cart).map(item => {
-        new ProductModal(this.cartItems.cart[item], 
-          App.addProductToCart.bind(App), 
-          App.removeProductToCart.bind(App),
-          modal)
-      })
+      new ProductModal(this.cartData, 
+        App.addProductToCart.bind(App), 
+        App.removeProductToCart.bind(App),
+        hookNode,
+        parentEl)
     }
   }
 
   static addProductToCart(product) {
-      this.cartItems = this.cart.addProduct(product)
+      this.cartData = this.cart.addProduct(product)
+      return this.cartData
   }
 
   static removeProductToCart(productId) {
-      this.cartItems = this.cart.removeProduct(productId)
+      this.cartData = this.cart.removeProduct(productId)
+      return this.cartData
   }
 }
 
