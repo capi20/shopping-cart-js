@@ -1,11 +1,17 @@
 import Product from './Product'
 import Sidebar from './Sidebar'
+import Modal from './Modal'
 import ShoppingCart from './ShoppingCart'
 
 class App {
   static init() {
       this.cart = new ShoppingCart()
-      console.log('App instance')
+      this.modal = new Modal(false)
+      document.querySelector('body').append(this.modal)
+  }
+
+  static openModal() {
+    this.modal.open()
   }
 
   static addProductToCart(product) {
@@ -15,9 +21,8 @@ class App {
 
 async function fetchProducts() {
   App.init()
-  let response = await fetch("http://localhost:3000/products");
+  let response = await fetch("http://localhost:3000/productdata");
   let products = await response.json();
-    //  console.log(products);
   displayProducts(products);
 }
 
@@ -27,14 +32,6 @@ function displayProducts(products) {
     }
 }
 
-// class Shop {
-//   constructor() {
-//       this.render()
-//   }
-//   render() {
-//       this.cart = new ShoppingCart('app')
-//       new ProductList('app')
-//   }
-// }
+document.getElementById('cart-logo').addEventListener('click', App.openModal.bind(App))
 
 window.addEventListener("DOMContentLoaded", fetchProducts);

@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
+    <script>
+        function stopReload(e) {
+            e.preventDefault()
+        }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -13,14 +18,14 @@
         <nav class="header__nav">
             <div class="header__nav-left">
                 <a href="/" class="header__nav-link">Home</a>
-                <a href="/" class="header__nav-link">Products</a>
+                <a href="/products" class="header__nav-link">Products</a>
             </div>
             <div class="header__nav-right">
                 <div class="mb-2">
                     <a href="/" class="header__nav-link">SignIn</a>
                     <a href="/" class="header__nav-link">Register</a>
                 </div>
-                <div class="cart">
+                <div class="cart" id="cart-logo">
                     <img src="/static/images/cart.svg" alt="cart logo" class="cart__logo"/>
                     <span class="cart__count">0 items</span>
                 </div>

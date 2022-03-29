@@ -8,11 +8,16 @@ const port = 3000;
 app.use(cors())
 app.use(express.static(path.join(__dirname, "/src/static")));
 app.use(express.json());
+
 app.get("/", (req, res) => {
   res.sendFile("app.html", { root: __dirname });
 });
 
 app.get("/products", (req, res) => {
+  res.sendFile("app.html", { root: __dirname });
+});
+
+app.get("/productdata", (req, res) => {
   res.json(products);
 });
 

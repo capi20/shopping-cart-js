@@ -5,6 +5,11 @@ export default class ShoppingCart {
         count: 0
     }
 
+    updateCartCount() {
+        const cartCount = document.querySelector('.cart__count')
+        cartCount.textContent = `${this.state.count} items`
+    }
+
     addProduct(product) {
         console.log(this.state)
         let updatedCart = {}
@@ -25,7 +30,43 @@ export default class ShoppingCart {
 
         this.state = {...this.state, ...updatedState} 
 
-        const cartCount = document.querySelector('.cart__count')
-        cartCount.textContent = `${this.state.count} items`
+        this.updateCartCount()
+    }
+
+    removeItem(productId) {
+        const itemObj = this.state.cart[productId]
+    
+        let updatedCart = {}
+        let updatedAmount = 0
+        let updatedCount = 0
+        let purchasingState = null
+    
+        if (itemObj) {
+            updatedAmount = this.state.amount - itemObj.price
+            updatedCount = this.state.count - 1
+            let modifiedData = {...this.state.cart[productId], itemCount: this.state.cart[productId].itemCount - 1}
+    
+            if (modifiedData.itemCount === 0){
+                updatedCart = {...this.state.cart}
+                delete updatedCart[productId]
+            } else {
+                updatedCart = {...this.state.cart, [productId]: {...modifiedData}}
+            }
+            
+            purchasingState = updatedCount > 0 ? true : false
+        } else {
+            console.warn(`Can't remove product (id: ${productId}) as it's not in cart!`)
+        }
+    
+        const updatedState = {
+            cart: updatedCart,
+            amount: updatedAmount,
+            count: updatedCount,
+            purchasing: purchasingState
+        }
+        
+        this.state = {...this.state, ...updatedState} 
+
+        this.updateCartCount()
     }
 }
