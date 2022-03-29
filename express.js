@@ -21,6 +21,12 @@ app.get("/productdata", (req, res) => {
   res.json(products);
 });
 
+app.get("/products/:id", (req, res) => {
+  let productId = req.params.id
+  const filteredList = products.filter(el => el.category === productId) 
+  res.json(filteredList);
+});
+
 // app.delete("/course/:id", (req, res) => {
 //   //   console.log("Deleting course..", req.params.id);
 //   let theCourseId = req.params.id;
@@ -38,5 +44,5 @@ app.get("/productdata", (req, res) => {
 // });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });

@@ -5,6 +5,7 @@ export default class Product extends Component {
 
     constructor(product, addProductToCart, renderHookId) {
         super(renderHookId)
+        this.hookId = renderHookId
         this.product = product
         this.addProductToCart = addProductToCart
         this.render()

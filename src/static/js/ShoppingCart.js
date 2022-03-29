@@ -11,7 +11,6 @@ export default class ShoppingCart {
     }
 
     addProduct(product) {
-        console.log(this.state)
         let updatedCart = {}
 
         if (Object.keys(this.state.cart).includes(product.id)) {
@@ -19,7 +18,7 @@ export default class ShoppingCart {
 
             updatedCart = {...this.state.cart, [product.id]: {...modifiedData}}
         } else {
-            updatedCart = {...this.state.cart, [product.id]: {...product}}
+            updatedCart = {...this.state.cart, [product.id]: {...product, itemCount: 1}}
         }
         
         const updatedState = {
@@ -31,9 +30,11 @@ export default class ShoppingCart {
         this.state = {...this.state, ...updatedState} 
 
         this.updateCartCount()
+
+        return this.state
     }
 
-    removeItem(productId) {
+    removeProduct(productId) {
         const itemObj = this.state.cart[productId]
     
         let updatedCart = {}

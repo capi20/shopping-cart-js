@@ -16,7 +16,7 @@ export default class Sidebar extends HTMLElement {
             sidebarListItem.textContent = category.name
 
             sidebarListItem.addEventListener('click', () => {
-                window.location.href = category.id
+                window.location.href = `/products/${category.id}`
             })
 
             sidebarList.append(sidebarListItem)

@@ -1,7 +1,8 @@
 export default class ButtonComponent extends HTMLElement {
-    constructor(text) {
+    constructor(text, classes) {
       super();
       this.text = text
+      this.classes = classes
     }
   
     connectedCallback() {
@@ -9,9 +10,14 @@ export default class ButtonComponent extends HTMLElement {
         this.text = this.getAttribute("text");
       }
 
+      if (this.hasAttribute("classes")) {
+        this.classes = this.getAttribute("classes");
+      }
+
       var buttonElement = document.createElement("button");
-      buttonElement.setAttribute("class", "button")
+      buttonElement.setAttribute("class", `button ${this.classes}`)
       buttonElement.innerHTML = this.text;
+
       this.appendChild(buttonElement);
     }
 }
