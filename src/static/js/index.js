@@ -6,6 +6,7 @@ import ProductModal from './ProductModal'
 import CategoryCard from './CategoryCard'
 import Header from './Header'
 import Footer from './Footer'
+import Slider from './Slider'
 
 class App {
   cartData = {}
@@ -76,6 +77,8 @@ async function fetchData(routeTo, id) {
 
     const mainContainer = document.querySelector('main')
     mainContainer.setAttribute("class", "home")
+
+    mainContainer.append(new Slider())
 
     for (let category of categories) {
       mainContainer.append(new CategoryCard(category, fetchData))
