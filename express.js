@@ -32,21 +32,13 @@ app.get("/products/:id", (req, res) => {
   res.json(filteredList);
 });
 
-// app.delete("/course/:id", (req, res) => {
-//   //   console.log("Deleting course..", req.params.id);
-//   let theCourseId = req.params.id;
-//   // functional programming
-//   courses = courses.filter((course) => course.id != theCourseId);
-//   console.log(courses);
-//   res.json({ msg: "success" });
-// });
+app.get("/signin", (req, res) => {
+  res.sendFile("app.html", { root: __dirname });
+});
 
-// app.post("/newcourse", (req, res) => {
-//   let courseToBeAdded = req.body;
-//   courses = [...courses, courseToBeAdded]; // push !
-//   //   console.log("Adding new course");
-//   res.json({ msg: "success" });
-// });
+app.get("/register", (req, res) => {
+  res.sendFile("app.html", { root: __dirname });
+});
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

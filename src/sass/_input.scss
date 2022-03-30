@@ -1,0 +1,50 @@
+.input-wrapper {
+    position: relative;
+    height: 3.5rem;
+    width: 40rem;
+    margin-bottom: 3rem;
+    font-size: inherit;
+
+    @media only screen and (max-width: $bp-medium) {
+        width: 35rem;
+    }
+
+    &__label {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        pointer-events: none;
+        transition: all 0.35s;
+    }
+}
+
+input {
+    width: inherit;
+    height: inherit;
+    border: none;
+    border-bottom: 1.5px solid black;
+    outline: none;
+    font-size: 1.6rem;
+    transition: all 0.35s;
+
+    &:focus {
+        border-color: red;
+    }
+
+    &:valid{
+        border-color: #0fa5a2;
+    }
+
+    &:focus ~ .input-wrapper__label {
+        color: red;
+        transform: translateY(-3rem);
+        font-size: 1.4rem;
+    }
+      
+    &:valid ~ .input-wrapper__label {
+        color: #0fa5a2;
+        transform: translateY(-3rem);
+        font-size: 1.4rem;
+    }
+}

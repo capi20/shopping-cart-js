@@ -7,6 +7,7 @@ import CategoryCard from './CategoryCard'
 import Header from './Header'
 import Footer from './Footer'
 import Slider from './Slider'
+import Form from './Form'
 
 class App {
   cartData = {}
@@ -44,6 +45,30 @@ class App {
   }
 }
 
+const loginForm=[
+  {
+      label:"Email"
+  },
+  {
+      label:"Password",
+      type: "password"
+  }
+]
+
+const signupForm = [
+  {
+      label: "First Name",
+  },
+  {
+      label: "Last Name",
+  },
+  ...loginForm,
+  {
+      label: "Confirm Password",
+      type: "password"
+  }
+]
+
 function addDOMElements() {
   App.init()
   console.log('rerendering')
@@ -64,6 +89,13 @@ function addDOMElements() {
     fetchData('/products', id)
   } else if (window.location.pathname === '/') {
     fetchData('/')
+  } else if (window.location.pathname === '/signin' || window.location.pathname === '/register') {
+    const isRegister = window.location.pathname === '/register' ? true : false
+    const heading = isRegister ? 'Signup' : 'Login'
+    const description = isRegister ? "We do not share your personal details with anyone." : "Get access to your Orders, Wishlist and Recommendations"
+    const formObj = isRegister ? signupForm : loginForm
+
+    new Form(heading, description, formObj, mainContainer)
   }
   
 }

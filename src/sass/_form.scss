@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.6rem;
+    padding: 3rem 0;
+}
+
+@media only screen and (max-width: $bp-medium) {
+    .form {
+        flex-direction: column;
+        max-width: 35rem;
+        margin: auto;
+
+        &__left {
+            margin-bottom: 2.5rem;
+        }
+    }
+}
