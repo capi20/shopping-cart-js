@@ -307,6 +307,14 @@ a {
   transform: translateY(-100vh);
   opacity: 0;
   transition: all 0.3s ease-out; }
+  @media only screen and (max-width: 800px) {
+    .modal {
+      width: 70vw;
+      left: calc((100% - 70vw) / 2); } }
+  @media only screen and (max-width: 500px) {
+    .modal {
+      width: 90vw;
+      left: calc((100% - 90vw) / 2); } }
   .modal__btn {
     position: absolute;
     right: 15px;
@@ -348,7 +356,6 @@ a {
     padding: 15px; }
 
 .header {
-  position: sticky;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -373,6 +380,9 @@ a {
         justify-content: flex-end; } }
     .header__nav-left {
       margin-bottom: 1rem; }
+      @media only screen and (max-width: 500px) {
+        .header__nav-left {
+          display: none; } }
     .header__nav-link {
       font-weight: bold; }
       .header__nav-link:not(:last-child) {
@@ -440,7 +450,7 @@ a {
       @media only screen and (max-width: 500px) {
         .product__info-image {
           width: 40%;
-          margin-bottom: 0;
+          margin: auto;
           margin-right: 1.5rem; } }
     .product__info-description {
       height: 100px;
@@ -449,12 +459,9 @@ a {
       margin-bottom: 2rem;
       border-radius: 5px;
       overflow: hidden; }
-      @media only screen and (max-width: 500px) {
-        .product__info-description {
-          height: auto; } }
     .product__info-bottom {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center; }
       .product__info-bottom--price {
         font-weight: bold;
@@ -496,11 +503,15 @@ a {
   text-align: center;
   padding: 3rem 2rem 2rem;
   box-shadow: 0 10px 10px -10px #000; }
+  @media only screen and (max-width: 500px) {
+    .category {
+      flex-direction: column; } }
   .category__image {
     width: 35%; }
     @media only screen and (max-width: 500px) {
       .category__image {
-        width: 40%; } }
+        width: 50%;
+        margin-bottom: 2rem; } }
   .category__right {
     flex: 1; }
     .category__right-heading {

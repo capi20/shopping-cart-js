@@ -20,7 +20,7 @@ export default class CategoryCard extends HTMLElement {
             <div class="category__right">
                 <h2 class="category__right-heading">${this.category.name}</h2>
                 <p class="category__right-description">${this.category.description}</p>
-                <button-element text="Explore ${this.category.name}" classes=''></button-element>
+                <button-element text="Explore ${this.category.name}"></button-element>
             </div>
         `
 

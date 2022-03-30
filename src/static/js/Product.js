@@ -17,6 +17,17 @@ export default class Product extends Component {
 
     render() {
         let productItem = this.createRootElement("div", "product");
+
+        const buyButton = window.innerWidth <= 500 ?
+            `<button-element 
+                text="Buy now @ Rs.${this.product.price}"
+                class="w-100">
+            </button-element>` :
+            `
+                <span class="product__info-bottom--price">MRP Rs.${this.product.price}</span>
+                <button-element text="Buy now"></button-element>
+            `
+
         productItem.innerHTML = `
             <h3 class="product__name">${this.product.name}</h3>
             <div class="product__info">
@@ -24,8 +35,7 @@ export default class Product extends Component {
                 <div>
                     <p class="product__info-description">${this.product.description}</p>
                     <div class="product__info-bottom">
-                        <span class="product__info-bottom--price">MRP Rs.${this.product.price}</span>
-                        <button-element text="Buy now"></button-element>
+                        ${buyButton}
                     </div>    
                 </div>
             </div>

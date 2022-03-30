@@ -29,6 +29,16 @@
     opacity: 0;
     transition: all 0.3s ease-out;
 
+    @media only screen and (max-width: $bp-medium) {
+        width: 70vw;
+        left: calc((100% - 70vw) / 2);
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        width: 90vw;
+        left: calc((100% - 90vw) / 2);
+    }
+
     &__btn {
         position: absolute;
         right: 15px;

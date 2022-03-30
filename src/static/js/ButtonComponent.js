@@ -1,5 +1,5 @@
 export default class ButtonComponent extends HTMLElement {
-    constructor(text, classes) {
+    constructor(text, classes = "") {
       super();
       this.text = text
       this.classes = classes
@@ -10,8 +10,8 @@ export default class ButtonComponent extends HTMLElement {
         this.text = this.getAttribute("text");
       }
 
-      if (this.hasAttribute("classes")) {
-        this.classes = this.getAttribute("classes");
+      if (this.hasAttribute("class")) {
+        this.classes = this.getAttribute("class");
       }
 
       var buttonElement = document.createElement("button");

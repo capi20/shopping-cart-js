@@ -64,11 +64,11 @@ export default class ProductList extends Component {
                     <div class="productRow__right-bottom--left">
                         <button-element 
                             text="-" 
-                            classes="p-small br-circle"></button-element>
+                            class="p-small br-circle"></button-element>
                         <span>${prod.itemCount}</span>
                         <button-element 
                             text="+" 
-                            classes="p-small br-circle"></button-element>
+                            class="p-small br-circle"></button-element>
                         <span>x ${prod.price}</span>    
                     </div>  
                     <span>Rs.${prod.price * prod.itemCount}</span>

@@ -57,7 +57,7 @@ export default class Modal extends HTMLElement {
                     </div>
                 </div>
                 <div class="modal__bottom">
-                    <button-element text="Start shopping" classes="w-100"></button-element>
+                    <button-element text="Start shopping" class="w-100"></button-element>
                 </div>
             </div>
         `

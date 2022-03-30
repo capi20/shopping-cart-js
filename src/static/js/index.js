@@ -93,7 +93,7 @@ function addDOMElements() {
 
     mainContainer.append(prodList)
 
-    const id = sessionStorage.getItem('currentProductId')
+    const id = sessionStorage.getItem('currentCategoryId')
     fetchData('/products', id)
   } else if (window.location.pathname === '/') {
     fetchData('/')
@@ -128,10 +128,10 @@ async function fetchData(routeTo, id) {
   } else if (routeTo === '/products') {
 
     if (id) {
-      sessionStorage.setItem('currentProductId', id)
+      sessionStorage.setItem('currentCategoryId', id)
       response = await fetch(`http://localhost:3000/products/${id}`)
     } else {
-      sessionStorage.removeItem('currentProductId')
+      sessionStorage.removeItem('currentCategoryId')
       response = await fetch("http://localhost:3000/productdata");
     }
 

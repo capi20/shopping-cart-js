@@ -25,7 +25,7 @@ class Header extends HTMLElement {
                 </div>
             </nav>
         `
-        header.querySelector('.product-link').addEventListener('click', () => sessionStorage.removeItem('currentProductId'))
+        header.querySelector('.product-link').addEventListener('click', () => sessionStorage.removeItem('currentCategoryId'))
         this.appendChild(header)
     }
 }
