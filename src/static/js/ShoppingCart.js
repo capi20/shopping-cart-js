@@ -5,7 +5,8 @@ export default class ShoppingCart {
         count: 0
     }
 
-    updateCartCount() {
+    updateCart(cartData = this.state) {
+        this.state = cartData
         const cartCount = document.querySelector('.cart__count')
         cartCount.textContent = `${this.state.count} items`
     }
@@ -29,7 +30,7 @@ export default class ShoppingCart {
 
         this.state = {...this.state, ...updatedState} 
 
-        this.updateCartCount()
+        this.updateCart()
 
         return this.state
     }
@@ -68,7 +69,7 @@ export default class ShoppingCart {
         
         this.state = {...this.state, ...updatedState} 
 
-        this.updateCartCount()
+        this.updateCart()
 
         return this.state
     }

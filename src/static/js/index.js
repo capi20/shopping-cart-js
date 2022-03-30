@@ -9,42 +9,6 @@ import Footer from './Footer'
 import Slider from './Slider'
 import Form from './Form'
 
-class App {
-  cartData = {}
-
-  static init() {
-      this.cart = new ShoppingCart()
-      this.modal = new Modal(false)
-      document.querySelector('body').append(this.modal)
-  }
-
-  static openModal() {
-    this.modal.open()
-
-    if (this.cartData) {
-      const hookNode = document.querySelector('modal-element .modal-wrapper .modal .modal__middle')
-      const parentEl = document.querySelector('modal-element .modal-wrapper .modal')
-      hookNode.innerHTML = ''
-
-      new ProductModal(this.cartData, 
-        App.addProductToCart.bind(App), 
-        App.removeProductToCart.bind(App),
-        hookNode,
-        parentEl)
-    }
-  }
-
-  static addProductToCart(product) {
-      this.cartData = this.cart.addProduct(product)
-      return this.cartData
-  }
-
-  static removeProductToCart(productId) {
-      this.cartData = this.cart.removeProduct(productId)
-      return this.cartData
-  }
-}
-
 const loginForm=[
   {
       label:"Email"
@@ -68,6 +32,50 @@ const signupForm = [
       type: "password"
   }
 ]
+
+class App {
+  cartData = {}
+
+  static init() {
+      this.cart = new ShoppingCart()
+      this.modal = new Modal(false)
+      document.querySelector('body').append(this.modal)
+
+      const storedData = JSON.parse(sessionStorage.getItem("CartData"))
+      if (storedData) {
+        this.cartData = storedData
+      }
+      this.cart.updateCart(this.cartData)
+  }
+
+  static openModal() {
+    this.modal.open()
+
+    if (this.cartData) {
+      const hookNode = document.querySelector('modal-element .modal-wrapper .modal .modal__middle')
+      const parentEl = document.querySelector('modal-element .modal-wrapper .modal')
+      hookNode.innerHTML = ''
+
+      new ProductModal(this.cartData, 
+        App.addProductToCart.bind(App), 
+        App.removeProductToCart.bind(App),
+        hookNode,
+        parentEl)
+    }
+  }
+
+  static addProductToCart(product) {
+      this.cartData = this.cart.addProduct(product)
+      sessionStorage.setItem("CartData", JSON.stringify(this.cartData))
+      return this.cartData
+  }
+
+  static removeProductToCart(productId) {
+      this.cartData = this.cart.removeProduct(productId)
+      sessionStorage.setItem("CartData", JSON.stringify(this.cartData))
+      return this.cartData
+  }
+}
 
 function addDOMElements() {
   App.init()
@@ -121,11 +129,9 @@ async function fetchData(routeTo, id) {
 
     if (id) {
       sessionStorage.setItem('currentProductId', id)
-      console.log("Hi from id")
       response = await fetch(`http://localhost:3000/products/${id}`)
     } else {
       sessionStorage.removeItem('currentProductId')
-      console.log("Hi from main")
       response = await fetch("http://localhost:3000/productdata");
     }
 
