@@ -27,6 +27,12 @@ a {
   .button:hover {
     background-color: #ad1f36; }
 
+.home {
+  padding: 0 13vw; }
+  @media only screen and (max-width: 62.5em) {
+    .home {
+      padding: 0; } }
+
 .link-unstyled, .link-unstyled:visited, .link-unstyled:hover, .link-unstyled:active, .link-unstyled:focus, .link-unstyled:active:hover {
   text-decoration: none; }
 
@@ -480,3 +486,26 @@ a {
       align-items: center; }
       .productRow__right-bottom--left > *:not(:last-child) {
         margin-right: 1rem; }
+
+.category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  box-shadow: 0 10px 10px -10px #000; }
+  .category__image {
+    width: 35%; }
+    @media only screen and (max-width: 500px) {
+      .category__image {
+        width: 40%; } }
+  .category__right {
+    flex: 1; }
+    .category__right-heading {
+      margin-bottom: 2rem; }
+    .category__right-description {
+      margin-bottom: 2rem; }
+
+.reverse {
+  flex-direction: row-reverse; }

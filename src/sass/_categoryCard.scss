@@ -1,0 +1,34 @@
+.category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    box-shadow: $box-shadow-dark;
+
+    &__image {
+        width: 35%;
+
+        @media only screen and (max-width: $bp-small) {
+            width: 40%;
+        }
+    }
+
+    &__right {
+        flex: 1;
+
+        &-heading {
+            margin-bottom: 2rem;
+        }
+
+        &-description {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+.reverse {
+    flex-direction: row-reverse;
+}

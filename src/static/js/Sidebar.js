@@ -7,7 +7,7 @@ export default class Sidebar extends HTMLElement {
     }
 
     clickHandler(id) {
-        this.fetchProducts(id)  
+        this.fetchProducts('/products', id)  
     }
   
     connectedCallback() {

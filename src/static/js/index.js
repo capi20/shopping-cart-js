@@ -3,6 +3,9 @@ import Sidebar from './Sidebar'
 import Modal from './Modal'
 import ShoppingCart from './ShoppingCart'
 import ProductModal from './ProductModal'
+import CategoryCard from './CategoryCard'
+import Header from './Header'
+import Footer from './Footer'
 
 class App {
   cartData = {}
@@ -42,31 +45,62 @@ class App {
 
 function addDOMElements() {
   App.init()
+  console.log('rerendering')
   const mainContainer = document.querySelector('main')
-  mainContainer.setAttribute("class", "product__wrapper")
 
-  mainContainer.append(new Sidebar(fetchProducts))
+  if (window.location.pathname === '/products') {
+    mainContainer.setAttribute("class", "product__wrapper")
 
-  const prodList = document.createElement('section')
-  prodList.setAttribute("class", "products__list")
-  prodList.setAttribute("id", "prod-list")
+    mainContainer.append(new Sidebar(fetchData))
 
-  mainContainer.append(prodList)
+    const prodList = document.createElement('section')
+    prodList.setAttribute("class", "products__list")
+    prodList.setAttribute("id", "prod-list")
 
-  fetchProducts()
+    mainContainer.append(prodList)
+
+    const id = sessionStorage.getItem('currentProductId')
+    fetchData('/products', id)
+  } else if (window.location.pathname === '/') {
+    fetchData('/')
+  }
+  
 }
 
-async function fetchProducts(id) {
+async function fetchData(routeTo, id) {
   let response, products
 
-  if (id) {
-    response = await fetch(`http://localhost:3000/products/${id}`)
-  } else {
-    response = await fetch("http://localhost:3000/productdata");
-  }
-  products = await response.json();
+  if (routeTo === '/') {
+    response = await fetch(`http://localhost:3000/categorydata`)
+    let categories = await response.json()
 
-  displayProducts(products);
+    const mainContainer = document.querySelector('main')
+    mainContainer.setAttribute("class", "home")
+
+    for (let category of categories) {
+      mainContainer.append(new CategoryCard(category, fetchData))
+    }
+
+    return
+  } else if (routeTo === '/products') {
+
+    if (id) {
+      sessionStorage.setItem('currentProductId', id)
+      console.log("Hi from id")
+      response = await fetch(`http://localhost:3000/products/${id}`)
+    } else {
+      sessionStorage.removeItem('currentProductId')
+      console.log("Hi from main")
+      response = await fetch("http://localhost:3000/productdata");
+    }
+
+    if (window.location.pathname === '/') {
+      window.location.href = `/products`
+    }
+    products = await response.json();
+  
+    displayProducts(products);
+  }
 }
 
 function displayProducts(products) {

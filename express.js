@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const cors = require('cors')
 const products = require('./server/products/index.get.json')
+const categories = require('./server/categories/index.get.json')
 const port = 3000;
 
 app.use(cors())
@@ -11,6 +12,10 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.sendFile("app.html", { root: __dirname });
+});
+
+app.get("/categorydata", (req, res) => {
+  res.json(categories);
 });
 
 app.get("/products", (req, res) => {
