@@ -1,5 +1,5 @@
 import sliderData from '../../../server/banners/index.get.json'
-import { createRootElement, toggleClass } from './helper'
+import { createRootElement, toggleClass } from '../helper'
 
 export default class Slider extends HTMLElement {
     constructor() {

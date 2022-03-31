@@ -1,6 +1,6 @@
 import { createRootElement } from './helper'
-import Input from './Input'
-import ButtonComponent from './ButtonComponent'
+import Input from './components/Input'
+import ButtonComponent from './components/ButtonComponent'
 
 export default class Form {
     constructor(heading, description, formObj, hookNode) {

@@ -1,5 +1,5 @@
 import cartegories from '../../../server/categories/index.get.json'
-import { createRootElement, toggleClass } from './helper'
+import { createRootElement, toggleClass } from '../helper'
 
 export default class Sidebar extends HTMLElement {
     constructor(fetchProducts) {

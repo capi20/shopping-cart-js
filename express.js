@@ -7,7 +7,7 @@ const categories = require('./server/categories/index.get.json')
 const port = 3000;
 
 app.use(cors())
-app.use(express.static(path.join(__dirname, "/src/static")));
+app.use(express.static(path.join(__dirname, "/src")));
 app.use(express.json());
 
 app.get("/", (req, res) => {

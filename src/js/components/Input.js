@@ -1,4 +1,4 @@
-import { createRootElement } from './helper'
+import { createRootElement } from '../helper'
 
 export default class Input extends HTMLElement {
     constructor(label, type = "text") {

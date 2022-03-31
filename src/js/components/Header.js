@@ -1,4 +1,4 @@
-import { createRootElement } from './helper'
+import { createRootElement } from '../helper'
 
 class Header extends HTMLElement {
     constructor() {

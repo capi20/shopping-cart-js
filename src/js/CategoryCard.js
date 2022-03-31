@@ -1,4 +1,4 @@
-import ButtonComponent from "./ButtonComponent"
+import ButtonComponent from "./components/ButtonComponent"
 import { createRootElement } from "./helper"
 
 export default class CategoryCard {

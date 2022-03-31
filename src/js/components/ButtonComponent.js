@@ -1,4 +1,4 @@
-import { createRootElement } from './helper'
+import { createRootElement } from '../helper'
 
 export default class ButtonComponent extends HTMLElement {
     constructor(text, classes = "") {
@@ -12,8 +12,8 @@ export default class ButtonComponent extends HTMLElement {
         this.text = this.getAttribute("text");
       }
 
-      if (this.hasAttribute("class")) {
-        this.classes = this.getAttribute("class");
+      if (this.hasAttribute("classes")) {
+        this.classes = this.getAttribute("classes");
       }
 
       const buttonElement = createRootElement("button", `button ${this.classes}`)

@@ -1,4 +1,4 @@
-import ButtonComponent from './ButtonComponent'
+import ButtonComponent from './components/ButtonComponent'
 import { createRootElement } from './helper'
 
 export default class Product {
@@ -20,7 +20,7 @@ export default class Product {
         const buyButton = window.innerWidth <= 500 ?
             `<button-element 
                 text="Buy now @ Rs.${this.product.price}"
-                class="w-100">
+                classes="w-100">
             </button-element>` :
             `
                 <span class="product__info-bottom--price">MRP Rs.${this.product.price}</span>

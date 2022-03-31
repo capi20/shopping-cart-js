@@ -1,12 +1,12 @@
 import Product from './Product'
-import Sidebar from './Sidebar'
-import Modal from './Modal'
+import Sidebar from './components/Sidebar'
+import Modal from './components/Modal'
 import ShoppingCart from './ShoppingCart'
 import CartElement from './CartElement'
 import CategoryCard from './CategoryCard'
-import Header from './Header'
-import Footer from './Footer'
-import Slider from './Slider'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Slider from './components/Slider'
 import Form from './Form'
 
 const loginForm=[

@@ -1,4 +1,4 @@
-import ButtonComponent from './ButtonComponent'
+import ButtonComponent from './components/ButtonComponent'
 import { createRootElement } from './helper'
 
 export default class CartElement {
@@ -63,11 +63,11 @@ export default class CartElement {
                     <div class="cartElement__right-bottom--left">
                         <button-element 
                             text="-" 
-                            class="p-small br-circle"></button-element>
+                            classes="p-small br-circle"></button-element>
                         <span>${prod.itemCount}</span>
                         <button-element 
                             text="+" 
-                            class="p-small br-circle"></button-element>
+                            classes="p-small br-circle"></button-element>
                         <span>x ${prod.price}</span>    
                     </div>  
                     <span>Rs.${prod.price * prod.itemCount}</span>
