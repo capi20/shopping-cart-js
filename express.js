@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors')
 const products = require('./server/products/index.get.json')
 const categories = require('./server/categories/index.get.json')
-const port = process.env.port || 3000
+const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.static(path.join(__dirname, "/src")));
