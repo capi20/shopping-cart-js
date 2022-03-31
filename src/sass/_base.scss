@@ -12,6 +12,10 @@ $color-primary-dark: #c74057;
 
 $box-shadow-dark: 0 10px 10px -10px #000;
 
+$indent_1: 5px;
+$indent_2: 10px;
+$indent_3: 15px;
+
 *,
 *::before,
 *::after {
@@ -48,10 +52,50 @@ a {
     }
 }
 
+// Home page styling
+
 .home {
     padding: 0 13vw;
 
     @media only screen and (max-width: 62.5em) {
         padding: 0;
     }
+}
+
+// Utility classes
+
+.w-100 {
+    width: 100%;
+}
+
+.br-circle {
+    border-radius: 50%;
+}
+
+.p-small {
+    padding: 5px 10px;
+}
+
+.mb-1 {
+    margin-bottom: $indent_1;
+}
+  
+.mb-2 {
+    margin-bottom: $indent_2;
+}
+  
+.mb-3 {
+    margin-bottom: $indent_3;
+}
+
+.mt-1 {
+    margin-top: $indent_1;
+}
+  
+.mt-2 {
+    margin-top: $indent_2;
+}
+  
+.mt-3 {
+    margin-top: $indent_3;
 }

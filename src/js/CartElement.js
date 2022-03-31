@@ -42,7 +42,7 @@ export default class CartElement {
             `
         }
 
-        this.parentEl.querySelector('.modal__top h4').textContent = `${this.cartData.count} items`
+        this.parentEl.querySelector('.modal__top h3').textContent = `${this.cartData.count} items`
 
         const buttonText = this.cartData.count > 0 && this.cartData ? 
             `<div class="d-flex justify-content-between">
