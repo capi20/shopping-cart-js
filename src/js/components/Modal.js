@@ -49,7 +49,7 @@ export default class Modal extends HTMLElement {
                     x
                 </span>
                 <div class="modal__top">
-                    <h4>0 items</h4>
+                    <h3>0 items</h3>
                 </div>
                 <div class="modal__middle">
                     <div class="modal__emptyMsg">

@@ -19,13 +19,13 @@ a {
 .button {
   font-size: 1.6rem;
   padding: 1rem 1.5rem;
-  background-color: #e05269;
+  background-color: #ad1f36;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer; }
   .button:hover {
-    background-color: #ad1f36; }
+    background-color: #c74057; }
 
 .home {
   padding: 0 13vw; }
@@ -260,7 +260,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e05269;
+    background-color: #ad1f36;
     color: #fff;
     font-size: 2rem;
     padding: 1.5rem 3rem;
@@ -386,7 +386,7 @@ a {
       .header__nav-link:not(:last-child) {
         margin-right: 3rem; }
       .header__nav-link:hover {
-        color: #e05269; }
+        color: #ad1f36; }
 
 .cart {
   display: flex;
