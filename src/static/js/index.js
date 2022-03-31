@@ -2,7 +2,7 @@ import Product from './Product'
 import Sidebar from './Sidebar'
 import Modal from './Modal'
 import ShoppingCart from './ShoppingCart'
-import ProductModal from './ProductModal'
+import CartElement from './CartElement'
 import CategoryCard from './CategoryCard'
 import Header from './Header'
 import Footer from './Footer'
@@ -56,7 +56,7 @@ class App {
       const parentEl = document.querySelector('modal-element .modal-wrapper .modal')
       hookNode.innerHTML = ''
 
-      new ProductModal(this.cartData, 
+      new CartElement(this.cartData, 
         App.addProductToCart.bind(App), 
         App.removeProductToCart.bind(App),
         hookNode,
@@ -77,26 +77,30 @@ class App {
   }
 }
 
-function addDOMElements() {
+function updateDOMElements() {
   App.init()
-  console.log('rerendering')
+  
   const mainContainer = document.querySelector('main')
 
-  if (window.location.pathname === '/products') {
+  if (window.location.pathname === '/') {
+    mainContainer.setAttribute("class", "home")
+
+    mainContainer.append(new Slider())
+
+    fetchData('/')
+  } else if (window.location.pathname === '/products') {
     mainContainer.setAttribute("class", "product__wrapper")
 
     mainContainer.append(new Sidebar(fetchData))
 
-    const prodList = document.createElement('section')
-    prodList.setAttribute("class", "products__list")
-    prodList.setAttribute("id", "prod-list")
+    const productList = document.createElement('section')
+    productList.setAttribute("class", "products__list")
+    productList.setAttribute("id", "prod-list")
 
-    mainContainer.append(prodList)
+    mainContainer.append(productList)
 
     const id = sessionStorage.getItem('currentCategoryId')
     fetchData('/products', id)
-  } else if (window.location.pathname === '/') {
-    fetchData('/')
   } else if (window.location.pathname === '/signin' || window.location.pathname === '/register') {
     const isRegister = window.location.pathname === '/register' ? true : false
     const heading = isRegister ? 'Signup' : 'Login'
@@ -109,22 +113,13 @@ function addDOMElements() {
 }
 
 async function fetchData(routeTo, id) {
-  let response, products
+  let response, result
 
   if (routeTo === '/') {
     response = await fetch(`http://localhost:3000/categorydata`)
-    let categories = await response.json()
+    result = await response.json()
 
-    const mainContainer = document.querySelector('main')
-    mainContainer.setAttribute("class", "home")
-
-    mainContainer.append(new Slider())
-
-    for (let category of categories) {
-      mainContainer.append(new CategoryCard(category, fetchData))
-    }
-
-    return
+    displayCategories(result)
   } else if (routeTo === '/products') {
 
     if (id) {
@@ -135,24 +130,30 @@ async function fetchData(routeTo, id) {
       response = await fetch("http://localhost:3000/productdata");
     }
 
-    if (window.location.pathname === '/') {
-      window.location.href = `/products`
-    }
-    products = await response.json();
+    result = await response.json();
   
-    displayProducts(products);
+    displayProducts(result);
   }
 }
 
-function displayProducts(products) {
-  const prodList = document.getElementById('prod-list')
-  prodList.innerHTML = ''
+function displayCategories(categories) {
+  const container = document.querySelector('main')
 
-    for(const product of products) {
-        new Product(product, App.addProductToCart.bind(App), prodList)
-    }
+  for (let category of categories) {
+    new CategoryCard(category, fetchData, container)
+  }
+}
+
+
+function displayProducts(products) {
+  const prodContainer = document.getElementById('prod-list')
+  prodContainer.innerHTML = ''
+
+  for(let product of products) {
+    new Product(product, App.addProductToCart.bind(App), prodContainer)
+  }
 }
 
 document.getElementById('cart-logo').addEventListener('click', App.openModal.bind(App))
 
-window.addEventListener("DOMContentLoaded", addDOMElements);
+window.addEventListener("DOMContentLoaded", updateDOMElements);

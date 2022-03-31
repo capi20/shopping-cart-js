@@ -1,10 +1,10 @@
-import { Component } from './helper'
+import { createRootElement } from './helper'
 import Input from './Input'
 import ButtonComponent from './ButtonComponent'
 
-export default class Form extends Component {
-    constructor(heading, description, formObj, renderHookId) {
-        super(renderHookId)
+export default class Form {
+    constructor(heading, description, formObj, hookNode) {
+        this.hookNode = hookNode
         this.heading = heading
         this.description = description
         this.formObj = formObj
@@ -12,25 +12,20 @@ export default class Form extends Component {
     }
 
     render() {
-        let formWrapper = this.createRootElement("article", "form");
+        let formWrapper = createRootElement("article", "form", this.hookNode)
 
-        let formInfo = document.createElement("section")
-        formInfo.setAttribute("class", "form__left")
+        let formInfo = createRootElement("section", "form__left", formWrapper)
         formInfo.innerHTML = `
-            <h2 className="form__heading mb-3">${this.heading}</h2>
-            <p className="form__description">${this.description}</p>
+            <h2 class="form__heading mb-3">${this.heading}</h2>
+            <p class="form__description">${this.description}</p>
         `
-        let formContainer = document.createElement("form")
-        formContainer.setAttribute("class", "form__right")
+        let formContainer = createRootElement("form", "form__right", formWrapper)
 
         this.formObj.map((el) => {
             formContainer.append(new Input(el.label, el.type))
         })
         
         formContainer.append(new ButtonComponent(this.heading, "w-100 mt-2 mb-2"))
-
-        formWrapper.append(formInfo)
-        formWrapper.append(formContainer)
     }
 
 }

@@ -1,13 +1,12 @@
 import ButtonComponent from './ButtonComponent'
-import { Component } from './helper'
+import { createRootElement } from './helper'
 
-export default class Product extends Component {
+export default class Product {
 
-    constructor(product, addProductToCart, renderHookId) {
-        super(renderHookId)
-        this.hookId = renderHookId
+    constructor(product, addProductToCart, hookNode) {
         this.product = product
         this.addProductToCart = addProductToCart
+        this.hookNode = hookNode
         this.render()
     }
 
@@ -16,7 +15,7 @@ export default class Product extends Component {
     }
 
     render() {
-        let productItem = this.createRootElement("div", "product");
+        let productItem = createRootElement("div", "product", this.hookNode);
 
         const buyButton = window.innerWidth <= 500 ?
             `<button-element 
@@ -41,7 +40,7 @@ export default class Product extends Component {
             </div>
         `
 
-        const addCartButton = productItem.querySelector('button-element button');
-        addCartButton.addEventListener('click', this.addToCart.bind(this));
+        const addProductBtn = productItem.querySelector('button-element button');
+        addProductBtn.addEventListener('click', this.addToCart.bind(this));
     }
 }

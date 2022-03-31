@@ -1,4 +1,5 @@
 import sliderData from '../../../server/banners/index.get.json'
+import { createRootElement, toggleClass } from './helper'
 
 export default class Slider extends HTMLElement {
     constructor() {
@@ -16,64 +17,47 @@ export default class Slider extends HTMLElement {
     updateSlide = (val) => {
         this.sliderIndex = val
 
-        const slides = document.querySelectorAll('.slide')
-        for (let slide of slides) {
-            slide.classList.remove('active')
-        }
-        slides[this.sliderIndex].classList.add('active')
+        const slides = document.querySelectorAll('.slider__box')
+        toggleClass(slides, 'active', this.sliderIndex)
+
+        const slideImages = document.querySelectorAll('.slider__img')
+        toggleClass(slideImages, 'active', this.sliderIndex)
 
         const dots = document.querySelectorAll('.dot')
-        for (let dot of dots) {
-            dot.classList.remove('dot-active')
-        }
-        dots[this.sliderIndex].classList.add('dot-active')
+        toggleClass(dots, 'dot-active', this.sliderIndex)
     }
 
     connectedCallback() {
+
         const slider = document.createElement('section')
         slider.setAttribute("class", "slider")
 
-        const prevButton = document.createElement('button')
-        prevButton.setAttribute("class", "slider__btn slider__btn-left")
+        const prevButton = createRootElement("button", "slider__btn slider__btn-left", slider)
         prevButton.textContent = "prev"
         prevButton.addEventListener('click', this.prevSlide)
 
-        const nextButton = document.createElement('button')
-        nextButton.setAttribute("class", "slider__btn slider__btn-right")
+        const nextButton = createRootElement("button", "slider__btn slider__btn-right", slider)
         nextButton.textContent = "next"
         nextButton.addEventListener('click', this.nextSlide)
 
-        slider.append(prevButton)
-        slider.append(nextButton)
-
-        const sliderDots = document.createElement('div')
-        sliderDots.setAttribute("class", "slider__dots")
+        const sliderDots = createRootElement("div", "slider__dots", slider)
 
         sliderData.map((el, i) => {
-            const bannerBox = document.createElement('div')
-            bannerBox.setAttribute("class", "slide")
+            const bannerBox = createRootElement("div", "slider__box", slider)
 
-            const dot = document.createElement('div')
-            dot.setAttribute("class", "dot")
+            const dot = createRootElement("div", "dot", sliderDots)
             dot.addEventListener('click', () => this.currentSlide(i))
+
+            const banner = createRootElement("img", "slider__img", bannerBox, 
+                [{name: "src", value: el.bannerImageUrl}, 
+                {name: "alt", value: el.bannerImageAlt}])
 
             if (i===0) {
                 bannerBox.classList.add('active')
+                banner.classList.add('active')
                 dot.classList.add('dot-active')
             }
-
-            const banner = document.createElement('img')
-            banner.setAttribute("class", "slider__img")
-            banner.setAttribute("src", `${el.bannerImageUrl}`)
-            banner.setAttribute("alt", `${el.bannerImageAlt}`)
-
-            bannerBox.append(banner)
-            slider.append(bannerBox)
-
-            sliderDots.append(dot)
         })
-
-        slider.append(sliderDots)
 
         this.appendChild(slider)
     }

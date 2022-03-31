@@ -1,15 +1,14 @@
 import ButtonComponent from './ButtonComponent'
-import { Component } from './helper'
+import { createRootElement } from './helper'
 
-export default class ProductList extends Component {
+export default class CartElement {
 
-    constructor(cartData, addProductToCart, removeProductToCart, renderHookNode, parentEl) {
-        super(renderHookNode)
+    constructor(cartData, addProductToCart, removeProductToCart, hookNode, parentEl) {
         this.cartData = cartData
         this.productList = this.cartData.cart
         this.addProductToCart = addProductToCart
         this.removeProductToCart = removeProductToCart
-        this.renderHookNode = renderHookNode
+        this.hookNode = hookNode
         this.parentEl = parentEl
         this.render()
     }
@@ -20,14 +19,14 @@ export default class ProductList extends Component {
         }
 
         Object.keys(this.productList).map(el => {
-            this.productRender(this.productList[el])
+            this.elementRender(this.productList[el])
         })
 
         this.updateCartInfo()
     }
 
     clearCart = () => {
-        const removeProducts = document.querySelector('modal-element .modal-wrapper .modal').querySelectorAll('.productRow')
+        const removeProducts = this.hookNode.querySelectorAll('.cartElement')
         for (let eachNode of removeProducts) {
             eachNode.parentNode.removeChild(eachNode)
         }
@@ -35,7 +34,7 @@ export default class ProductList extends Component {
 
     updateCartInfo = () => {
         if(this.cartData.count === 0) {
-            this.renderHookNode.innerHTML = `
+            this.hookNode.innerHTML = `
                 <div class="modal__emptyMsg">
                     <h3 class="mb-3">No items in your cart</h3>
                     <p>Your favourite items are just a click away</p> 
@@ -54,14 +53,14 @@ export default class ProductList extends Component {
         this.parentEl.querySelector('.modal__bottom button-element button').innerHTML = buttonText
     }
 
-    productRender(prod) {
-        let productItem = this.createRootElement("div", "productRow");
+    elementRender(prod) {
+        let productItem = createRootElement("div", "cartElement", this.hookNode);
         productItem.innerHTML = `
-            <img src=${prod.imageURL} alt=${prod.name} class="productRow__image"/>
-            <div class="productRow__right">
-                <h4  class="productRow__name mb-2">${prod.name}</h4>
-                <div class="productRow__right-bottom">
-                    <div class="productRow__right-bottom--left">
+            <img src=${prod.imageURL} alt=${prod.name} class="cartElement__image"/>
+            <div class="cartElement__right">
+                <h4  class="cartElement__name mb-2">${prod.name}</h4>
+                <div class="cartElement__right-bottom">
+                    <div class="cartElement__right-bottom--left">
                         <button-element 
                             text="-" 
                             class="p-small br-circle"></button-element>

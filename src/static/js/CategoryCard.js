@@ -1,19 +1,21 @@
 import ButtonComponent from "./ButtonComponent"
+import { createRootElement } from "./helper"
 
-export default class CategoryCard extends HTMLElement {
-    constructor(category, fetchData) {
-        super()
+export default class CategoryCard {
+    constructor(category, fetchData, hookNode) {
         this.category = category
         this.fetchData = fetchData
+        this.hookNode = hookNode
+        this.render()
     }
 
     clickHandler(id) {
+        window.location.href = `/products`
         this.fetchData('/products', id)  
     }
 
-    connectedCallback() {
-        const categoryCard = document.createElement('section')
-        categoryCard.setAttribute("class", "category")
+    render() {
+        const categoryCard = createRootElement("section", "category", this.hookNode)
 
         categoryCard.innerHTML = `
             <img src=${this.category.imageUrl} alt=${this.category.name} class="category__image"/>
@@ -24,13 +26,7 @@ export default class CategoryCard extends HTMLElement {
             </div>
         `
 
-        
         const btn = categoryCard.querySelector("button-element")
-        console.log(this.category.id)
         btn.addEventListener('click', () => this.clickHandler(this.category.id))
-
-        this.appendChild(categoryCard);
     }
 }
-
-customElements.define("categorycard-element", CategoryCard);

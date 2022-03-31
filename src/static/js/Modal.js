@@ -1,3 +1,5 @@
+import { createRootElement } from './helper'
+
 export default class Modal extends HTMLElement {
     constructor(isOpen) {
       super();
@@ -18,7 +20,7 @@ export default class Modal extends HTMLElement {
     }
 
     clearCart = () => {
-        const removeProducts = this.querySelector('.modal-wrapper .modal').querySelectorAll('.productRow')
+        const removeProducts = this.querySelector('.modal-wrapper .modal').querySelectorAll('.cartElement')
         for (let eachNode of removeProducts) {
             eachNode.parentNode.removeChild(eachNode)
         }
@@ -38,8 +40,7 @@ export default class Modal extends HTMLElement {
     }
   
     connectedCallback() {
-        const modalWrapper = document.createElement('div')
-        modalWrapper.setAttribute("class", "modal-wrapper")
+        const modalWrapper = createRootElement("div", "modal-wrapper")
 
         modalWrapper.innerHTML = `
             <div class="backdrop"></div>
@@ -65,8 +66,8 @@ export default class Modal extends HTMLElement {
         const backdrop = modalWrapper.querySelector('.backdrop')
         backdrop.addEventListener('click', this.close)
 
-        const modalBtn = modalWrapper.querySelector('.modal__btn')
-        modalBtn.addEventListener('click', this.close)
+        const modalCloseBtn = modalWrapper.querySelector('.modal__btn')
+        modalCloseBtn.addEventListener('click', this.close)
 
         this.appendChild(modalWrapper);
     }

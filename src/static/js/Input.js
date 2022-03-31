@@ -1,3 +1,5 @@
+import { createRootElement } from './helper'
+
 export default class Input extends HTMLElement {
     constructor(label, type = "text") {
       super();
@@ -14,8 +16,7 @@ export default class Input extends HTMLElement {
         this.type = this.getAttribute("type");
       }
 
-      const inputWrapper = document.createElement("div");
-      inputWrapper.setAttribute("class", "input-wrapper")
+      const inputWrapper = createRootElement("div", "input-wrapper")
       inputWrapper.innerHTML = `
         <input type=${this.type} required/>
         <label class="input-wrapper__label">${this.label}</label>

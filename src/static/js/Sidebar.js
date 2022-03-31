@@ -1,11 +1,12 @@
 import cartegories from '../../../server/categories/index.get.json'
+import { createRootElement, toggleClass } from './helper'
 
 export default class Sidebar extends HTMLElement {
     constructor(fetchProducts) {
       super();
       this.fetchProducts = fetchProducts
       this.shouldDisplay = false 
-      this.selectedCategory = "Select category"
+      this.currentCategory = "Select category"
       this.categoryIndex = 0
       this.getCategory()
     }
@@ -13,9 +14,9 @@ export default class Sidebar extends HTMLElement {
     getCategory() {
         const currentId = sessionStorage.getItem("currentCategoryId")
         if (currentId) {
-            const currentCategory = cartegories.filter(el => el.id === currentId)
-            this.selectedCategory = currentCategory[0].name
-            this.categoryIndex = cartegories.findIndex(x => x === currentCategory[0])
+            const currentCategoryData = cartegories.filter(el => el.id === currentId)
+            this.currentCategory = currentCategoryData[0].name
+            this.categoryIndex = cartegories.findIndex(x => x === currentCategoryData[0])
         }
     }
 
@@ -24,13 +25,10 @@ export default class Sidebar extends HTMLElement {
         this.getCategory()
 
         const sidebarItems = document.querySelectorAll(".sidebar__item")
-        for (let item of sidebarItems) {
-            item.classList.remove("active")
-        }
-        sidebarItems[this.categoryIndex].classList.add("active")
+        toggleClass(sidebarItems, "active", this.categoryIndex)
 
         if (window.innerWidth <= 500) {
-            document.querySelector(".sidebar-mobile__text").textContent = this.selectedCategory
+            document.querySelector(".sidebar-mobile__text").textContent = this.currentCategory
             this.sidebarHandler()
         }
     }
@@ -44,41 +42,32 @@ export default class Sidebar extends HTMLElement {
         const sideBox = document.createElement("aside");
         sideBox.style.height = '100%'
 
-        const sidebarEl = document.createElement("nav");
-        sidebarEl.setAttribute("class", "sidebar")
+        const sidebarEl = createRootElement("nav", "sidebar")
 
-        const sidebarList = document.createElement("ul");
+        const sidebarList = createRootElement("ul", "sidebar__list", sidebarEl)
         for (const category of cartegories) {
-            const sidebarListItem = document.createElement('li')
-            sidebarListItem.setAttribute("class", "sidebar__item")
+            const sidebarListItem = createRootElement("li", "sidebar__item", sidebarList)
             sidebarListItem.textContent = category.name
 
             sidebarListItem.addEventListener('click', 
                 () => this.clickHandler(category.id))
 
-            if (category.name === this.selectedCategory) {
+            if (category.name === this.currentCategory) {
                 sidebarListItem.classList.add("active")
             }
-
-            sidebarList.append(sidebarListItem)
         }
 
-        sidebarEl.append(sidebarList)
-
         if (window.innerWidth <= 500) {
-            const sidebarMobile = document.createElement('div')
-            sidebarMobile.setAttribute("class", "sidebar-mobile")
+
+            const sidebarMobile = createRootElement("div", "sidebar-mobile", sideBox)
             sidebarMobile.addEventListener("click", this.sidebarHandler)
 
             sidebarMobile.innerHTML = `
-                <span class="sidebar-mobile__text">${this.selectedCategory}</span>
+                <span class="sidebar-mobile__text">${this.currentCategory}</span>
             `
-            const sidebarWrapper = document.createElement("div")
-            sidebarWrapper.setAttribute("class", "sidebar-wrapper")
-            sidebarWrapper.append(sidebarEl)
 
-            sideBox.append(sidebarMobile)
-            sideBox.append(sidebarWrapper)
+            const sidebarWrapper = createRootElement("div", "sidebar-wrapper", sideBox)
+            sidebarWrapper.append(sidebarEl)
         } else {
             sideBox.append(sidebarEl)
         }

@@ -6,10 +6,21 @@
     font-size: 1.6rem;
     text-align: center;
     padding: 3rem 2rem 2rem;
-    box-shadow: $box-shadow-dark;
+    
+    &:not(:last-child) {
+        box-shadow: $box-shadow-dark;
+    }
+
+    &:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
 
     @media only screen and (max-width: $bp-small) {
         flex-direction: column;
+
+        &:nth-child(odd) {
+            flex-direction: column;
+        }
     }
 
     &__image {

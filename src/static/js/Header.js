@@ -1,11 +1,12 @@
+import { createRootElement } from './helper'
+
 class Header extends HTMLElement {
     constructor() {
         super()
     }
 
     connectedCallback() {
-        const header = document.createElement('header')
-        header.setAttribute("class", "header")
+        const header = createRootElement("header", "header")
         header.innerHTML = `
             <a href="/"><img src="/static/images/logo.png" alt="logo" class="header__logo"/></a>
             <nav class="header__nav">
@@ -25,7 +26,8 @@ class Header extends HTMLElement {
                 </div>
             </nav>
         `
-        header.querySelector('.product-link').addEventListener('click', () => sessionStorage.removeItem('currentCategoryId'))
+        header.querySelector('.product-link').addEventListener('click', 
+            () => sessionStorage.removeItem('currentCategoryId'))
         this.appendChild(header)
     }
 }

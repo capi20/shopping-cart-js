@@ -39,15 +39,13 @@
         position: absolute;
         width: 100%;
         visibility: hidden;
-        -webkit-transform: scaleY(0);
-        transform: scaleY(0);
-        transition: visibility .2s, transform .3s ease-out;
+        transform: translateX(-100vw);
+        transition: visibility .2s, transform .3s ease-in-out;
     }
 }
 
 .sidebar-active {
     visibility: visible;
-    -webkit-transform: scaleY(1);
-    transform: scaleY(1);
-    transition: visibility .2s, transform .3s ease-in;
+    transform: translateX(0);
+    transition: visibility .1s, transform .5s ease-in-out;
 }
