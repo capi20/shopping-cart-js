@@ -317,6 +317,17 @@ a {
       .cartElement__right-bottom--left > *:not(:last-child) {
         margin-right: 1rem; }
 
+.offer-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  background-color: #fff;
+  padding: 1rem; }
+  .offer-wrapper > img {
+    width: 30%;
+    margin-right: 1.5rem; }
+
 .category {
   display: flex;
   justify-content: space-between;

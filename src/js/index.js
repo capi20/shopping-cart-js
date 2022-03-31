@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Slider from './components/Slider'
 import Form from './Form'
+import { createRootElement } from './helper'
 
 const loginForm=[
   {
@@ -61,6 +62,14 @@ class App {
         App.removeProductToCart.bind(App),
         hookNode,
         parentEl)
+
+      if (this.cartData.count > 0) {
+        const offer = createRootElement("div", "offer-wrapper", hookNode)
+        offer.innerHTML = `
+          <img src="/static/images/lowest-price.png" alt="Offer"/>
+          <span>You won't find it cheaper anywhere</span>
+        `
+      }
     }
   }
 
