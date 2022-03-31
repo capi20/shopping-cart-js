@@ -116,7 +116,7 @@ async function fetchData(routeTo, id) {
   let response, result
 
   if (routeTo === '/') {
-    response = await fetch(`http://localhost:3000/categorydata`)
+    response = await fetch(`/categorydata`)
     result = await response.json()
 
     displayCategories(result)
@@ -124,10 +124,10 @@ async function fetchData(routeTo, id) {
 
     if (id) {
       sessionStorage.setItem('currentCategoryId', id)
-      response = await fetch(`http://localhost:3000/products/${id}`)
+      response = await fetch(`/products/${id}`)
     } else {
       sessionStorage.removeItem('currentCategoryId')
-      response = await fetch("http://localhost:3000/productdata");
+      response = await fetch("/productdata");
     }
 
     result = await response.json();
