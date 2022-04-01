@@ -16,11 +16,11 @@ export default class CartElement {
     render() {
         if (this.productList) {
             this.clearCart()
-        }
 
-        Object.keys(this.productList).map(el => {
-            this.elementRender(this.productList[el])
-        })
+            Object.keys(this.productList).map(el => {
+                this.elementRender(this.productList[el])
+            })
+        }
 
         if (this.cartData.count > 0) {
             const offerWrapper = this.hookNode.querySelector('.offer-wrapper')

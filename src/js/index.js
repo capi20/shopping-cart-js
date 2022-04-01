@@ -35,7 +35,11 @@ const signupForm = [
 ]
 
 class App {
-  cartData = {}
+  static cartData = {
+    cart:{},
+    amount:0,
+    count:0,
+  }
 
   static init() {
       this.cart = new ShoppingCart()

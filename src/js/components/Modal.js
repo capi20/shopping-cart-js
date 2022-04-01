@@ -16,14 +16,6 @@ export default class Modal extends HTMLElement {
         this.isOpen = false
 
         this.toggleElement()
-        this.clearCart()
-    }
-
-    clearCart = () => {
-        const removeProducts = this.querySelector('.modal-wrapper .modal').querySelectorAll('.cartElement')
-        for (let eachNode of removeProducts) {
-            eachNode.parentNode.removeChild(eachNode)
-        }
     }
 
     toggleElement = () => {

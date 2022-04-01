@@ -40,6 +40,10 @@ app.get("/register", (req, res) => {
   res.sendFile("app.html", { root: __dirname });
 });
 
+app.get("/*", (req, res) => {
+  res.sendFile("404.html", { root: __dirname });
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
