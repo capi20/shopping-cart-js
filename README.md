@@ -6,12 +6,12 @@ An online store where you can shop for your daily needs. [Click here](https://sb
 
 Clone the project
 
-### https://github.com/capi20/shopping-cart-js.git
+### `https://github.com/capi20/shopping-cart-js.git`
 
 Go to the project directory & Install dependencies
 
-### cd sbka-bazaar
-### npm install
+### `cd sbka-bazaar`
+### `npm install`
 
 Start the server
 
