@@ -46,20 +46,13 @@ export default class Modal extends HTMLElement {
             <div class="backdrop"></div>
             <div class="modal" id="modal">
                 <span class="modal__btn">
-                    x
+                ✕
                 </span>
                 <div class="modal__top">
                     <h3>0 items</h3>
                 </div>
-                <div class="modal__middle">
-                    <div class="modal__emptyMsg">
-                        <h3 class="mb-3">No items in your cart</h3>
-                        <p>Your favourite items are just a click away</p> 
-                    </div>
-                </div>
-                <div class="modal__bottom">
-                    <button-element text="Start shopping" classes="w-100"></button-element>
-                </div>
+                <div class="modal__middle"></div>
+                <div class="modal__bottom"></div>
             </div>
         `
 

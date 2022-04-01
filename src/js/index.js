@@ -62,14 +62,6 @@ class App {
         App.removeProductToCart.bind(App),
         hookNode,
         parentEl)
-
-      if (this.cartData.count > 0) {
-        const offer = createRootElement("div", "offer-wrapper", hookNode)
-        offer.innerHTML = `
-          <img src="/static/images/lowest-price.png" alt="Offer"/>
-          <span>You won't find it cheaper anywhere</span>
-        `
-      }
     }
   }
 

@@ -22,14 +22,23 @@ export default class CartElement {
             this.elementRender(this.productList[el])
         })
 
+        if (this.cartData.count > 0) {
+            const offerWrapper = this.hookNode.querySelector('.offer-wrapper')
+
+            if(!offerWrapper) {
+                const offer = createRootElement("div", "offer-wrapper", this.hookNode)
+                offer.innerHTML = `
+                <img src="/static/images/lowest-price.png" alt="Offer"/>
+                <span>You won't find it cheaper anywhere</span>
+                `
+            }
+        }
+
         this.updateCartInfo()
     }
 
     clearCart = () => {
-        const removeProducts = this.hookNode.querySelectorAll('.cartElement')
-        for (let eachNode of removeProducts) {
-            eachNode.parentNode.removeChild(eachNode)
-        }
+        this.hookNode.innerHTML = ''
     }
 
     updateCartInfo = () => {
@@ -44,13 +53,20 @@ export default class CartElement {
 
         this.parentEl.querySelector('.modal__top h3').textContent = `${this.cartData.count} items`
 
-        const buttonText = this.cartData.count > 0 && this.cartData ? 
+        const btnText = this.cartData.count > 0 && this.cartData ? 
             `<div class="d-flex justify-content-between">
                 <span>Proceed to Checkout</span>
                 <span>Rs.${this.cartData.amount}</span>
-            </div>` : 
-            `<span>Start shopping</span>`
-        this.parentEl.querySelector('.modal__bottom button-element button').innerHTML = buttonText
+            </div>` :
+            "Start shopping"
+
+        const bottomElement = this.cartData.count > 0 && this.cartData ? 
+            `<p class="mb-2 text-center">Promo code can be applied on payment page</p>
+            <button-element text='' classes="w-100"></button-element>` : 
+            `<button-element text='' classes="w-100"></button-element>
+            `
+        this.parentEl.querySelector('.modal__bottom').innerHTML = bottomElement
+        this.parentEl.querySelector('.modal__bottom button-element button').innerHTML = btnText
     }
 
     elementRender(prod) {

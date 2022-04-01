@@ -64,6 +64,10 @@ a {
 
 // Utility classes
 
+.text-center {
+    text-align: center;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -98,4 +102,12 @@ a {
   
 .mt-3 {
     margin-top: $indent_3;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
 }

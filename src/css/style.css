@@ -33,6 +33,9 @@ a {
     .home {
       padding: 0; } }
 
+.text-center {
+  text-align: center; }
+
 .w-100 {
   width: 100%; }
 
@@ -59,6 +62,12 @@ a {
 
 .mt-3 {
   margin-top: 15px; }
+
+.d-flex {
+  display: flex; }
+
+.justify-content-between {
+  justify-content: space-between; }
 
 .sidebar {
   background-color: rgba(0, 0, 0, 0.2);
@@ -362,9 +371,6 @@ a {
 
 .slider {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0 10px 10px -10px #000;
   margin: 2rem 0; }
   .slider__btn {
@@ -382,24 +388,43 @@ a {
       left: 5px; }
     .slider__btn-right {
       right: 5px; }
-  .slider__box {
-    opacity: 0;
-    transform: scale(0.5, 0.5); }
-    .slider__box.active {
-      opacity: 1;
-      transform: scale(1, 1);
-      transition: opacity .3s, transform .4s ease-in-out; }
-  .slider__img {
-    width: 100%;
-    display: none; }
-    .slider__img.active {
-      display: block; }
+  .slider__container {
+    height: 27rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    @media only screen and (max-width: 1000px) {
+      .slider__container {
+        height: 25rem; } }
+    @media only screen and (max-width: 800px) {
+      .slider__container {
+        height: 22rem; } }
+    @media only screen and (max-width: 500px) {
+      .slider__container {
+        height: 18rem; } }
+    .slider__container-banner {
+      opacity: 0;
+      transform: scale(0.9, 0.9); }
+      .slider__container-banner.active {
+        opacity: 1;
+        transform: scale(1, 1);
+        transition: opacity .3s, transform .4s ease-in; }
+      .slider__container-banner--img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        display: none; }
+        .slider__container-banner--img.active {
+          display: block; }
   .slider__dots {
     position: absolute;
-    z-index: 10;
-    bottom: 1rem;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    align-items: center; }
+    align-items: center;
+    justify-content: center; }
     .slider__dots > div {
       height: .7rem;
       width: .7rem;

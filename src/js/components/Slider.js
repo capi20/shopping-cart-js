@@ -17,10 +17,10 @@ export default class Slider extends HTMLElement {
     updateSlide = (val) => {
         this.sliderIndex = val
 
-        const slides = document.querySelectorAll('.slider__box')
+        const slides = document.querySelectorAll('.slider__container-banner')
         toggleClass(slides, 'active', this.sliderIndex)
 
-        const slideImages = document.querySelectorAll('.slider__img')
+        const slideImages = document.querySelectorAll('.slider__container-banner--img')
         toggleClass(slideImages, 'active', this.sliderIndex)
 
         const dots = document.querySelectorAll('.dot')
@@ -40,21 +40,23 @@ export default class Slider extends HTMLElement {
         nextButton.textContent = "next"
         nextButton.addEventListener('click', this.nextSlide)
 
+        const sliderContainer = createRootElement("div", "slider__container", slider)
+
         const sliderDots = createRootElement("div", "slider__dots", slider)
 
         sliderData.map((el, i) => {
-            const bannerBox = createRootElement("div", "slider__box", slider)
+            const banner = createRootElement("div", "slider__container-banner", sliderContainer)
 
             const dot = createRootElement("div", "dot", sliderDots)
             dot.addEventListener('click', () => this.currentSlide(i))
 
-            const banner = createRootElement("img", "slider__img", bannerBox, 
+            const bannerImg = createRootElement("img", "slider__container-banner--img", banner, 
                 [{name: "src", value: el.bannerImageUrl}, 
                 {name: "alt", value: el.bannerImageAlt}])
 
             if (i===0) {
-                bannerBox.classList.add('active')
                 banner.classList.add('active')
+                bannerImg.classList.add('active')
                 dot.classList.add('dot-active')
             }
         })
