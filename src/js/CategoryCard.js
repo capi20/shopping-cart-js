@@ -2,16 +2,15 @@ import ButtonComponent from "./components/ButtonComponent"
 import { createRootElement } from "./helper"
 
 export default class CategoryCard {
-    constructor(category, fetchData, hookNode) {
+    constructor(category, clickCallback, hookNode) {
         this.category = category
-        this.fetchData = fetchData
         this.hookNode = hookNode
         this.render()
     }
 
     clickHandler(id) {
         window.location.href = `/products`
-        this.fetchData('/products', id)  
+        sessionStorage.setItem('currentCategoryId', id)
     }
 
     render() {

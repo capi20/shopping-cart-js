@@ -24,3 +24,11 @@ export function toggleClass(elements, classname, index) {
 
     return
 }
+
+export function displayResult(result, clickCallback, container, Obj) {
+    container.innerHTML = ''
+    
+    for (let r of result) {
+      new Obj(r, clickCallback, container)
+    }
+}

@@ -1,7 +1,7 @@
 import ButtonComponent from './components/ButtonComponent'
 import { createRootElement } from './helper'
 
-export default class Product {
+export default class ProductItem {
 
     constructor(product, addProductToCart, hookNode) {
         this.product = product

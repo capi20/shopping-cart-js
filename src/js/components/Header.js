@@ -19,8 +19,8 @@ class Header extends HTMLElement {
                         <a href="/signin" class="header__nav-link">SignIn</a>
                         <a href="/register" class="header__nav-link">Register</a>
                     </div>
-                    <div class="cart" id="cart-logo">
-                        <img src="/static/images/cart.svg" alt="cart logo" class="cart__logo"/>
+                    <div class="cart__logo" id="cart-logo">
+                        <img src="/static/images/cart.svg" alt="cart logo" class="cart__logo-img"/>
                         <span class="cart__count">0 items</span>
                     </div>
                 </div>

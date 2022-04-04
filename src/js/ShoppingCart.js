@@ -5,10 +5,12 @@ export default class ShoppingCart {
         count: 0
     }
 
-    updateCart(cartData = this.state) {
+    updateCartData(cartData = this.state) {
         this.state = cartData
         const cartCount = document.querySelector('.cart__count')
         cartCount.textContent = `${this.state.count} items`
+
+        sessionStorage.setItem("CartData", JSON.stringify(this.state))
     }
 
     addProduct(product) {
@@ -30,7 +32,7 @@ export default class ShoppingCart {
 
         this.state = {...this.state, ...updatedState} 
 
-        this.updateCart()
+        this.updateCartData()
 
         return this.state
     }
@@ -69,7 +71,7 @@ export default class ShoppingCart {
         
         this.state = {...this.state, ...updatedState} 
 
-        this.updateCart()
+        this.updateCartData()
 
         return this.state
     }
