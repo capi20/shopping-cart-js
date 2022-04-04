@@ -21,26 +21,44 @@ Dependencies
 
 Clone the project
 
-#### `https://github.com/capi20/shopping-cart-js.git`
+```bash
+  https://github.com/capi20/shopping-cart-js.git
+```
 
 Go to the project directory & Install dependencies
 
-#### `cd sbka-bazaar`
-#### `npm install`
+```bash
+  cd sbka-bazaar
+  npm install
+ ```
 
 Start the server
 
-#### `npm run start`
+```bash
+  npm run start
+```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Other scripts
 
-Compile sass files
+Compile all sass files into one css file
 
-#### `npm run watch:sass`
+```bash
+  npm run watch:sass
+```
 
-Build js bundler
+Compile all js files into one js file
 
-#### `npm run build`
+- In development mode
+
+```bash
+  npm run build:dev
+```
+
+- In production mode
+
+```bash
+  npm run build
+```
