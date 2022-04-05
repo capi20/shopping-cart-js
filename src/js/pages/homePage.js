@@ -1,6 +1,7 @@
 import CategoryCard from '../CategoryCard'
 import { displayResult } from '../helper'
 
+// To fetch categories and display them
 export default async function loadHomePage() {
     let response, result
   

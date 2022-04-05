@@ -1,6 +1,6 @@
 import ButtonComponent from './components/ButtonComponent'
 import { createRootElement } from './helper'
-
+ 
 export default class CartProduct {
 
     constructor(oldCartData, cartData, addProductToCart, removeProductToCart, updateCartElements, hookNode, modal) {
@@ -15,6 +15,7 @@ export default class CartProduct {
         this.render()
     }
 
+    // To render new added products or modify info for existing products
     render() {
         const cartContainer = this.hookNode.querySelector(".cart-wrapper")
 
@@ -32,6 +33,7 @@ export default class CartProduct {
         })
     }
 
+    // After add/remove product -- To update count and amount for each product
     updateCartProductData(prodId) {
         const updatedProductEl = document.getElementById(prodId)
         const updatedProductData = this.cartData.cart[prodId]
@@ -44,11 +46,13 @@ export default class CartProduct {
         }
     }
 
+    // To update cart info 
     updateCartData(prodId) {
         this.updateCartProductData(prodId)
         this.updateCartElements(this.modal, this.cartData)
     }
 
+    // create a product element and render it inside cart
     productRender(prod, cartContainer) {
         let productItem = createRootElement("div", "cart-item", cartContainer, 
             [{name: "id", value: `${prod.id}`}]);

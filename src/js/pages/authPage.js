@@ -1,5 +1,6 @@
 import Form from '../Form'
 
+// login form
 const loginForm=[
     {
         label:"Email"
@@ -10,6 +11,7 @@ const loginForm=[
     }
 ]
   
+// signup form
 const signupForm = [
     {
         label: "First Name",

@@ -6,18 +6,21 @@ export default class Modal extends HTMLElement {
       this.isOpen = isOpen
     }
 
+    // on modal open
     open = () => {
         this.isOpen = true
 
         this.toggleElement()
     }
 
+    // on modal close
     close = () => {
         this.isOpen = false
 
         this.toggleElement()
     }
 
+    // toggle classes
     toggleElement = () => {
         const backdrop = this.querySelector('.backdrop') 
         const modal = this.querySelector('.modal')
@@ -33,20 +36,6 @@ export default class Modal extends HTMLElement {
   
     connectedCallback() {
         const modalWrapper = createRootElement("div", "modal-wrapper")
-
-        // modalWrapper.innerHTML = `
-        //     <div class="backdrop"></div>
-        //     <div class="modal" id="modal">
-        //         <span class="modal__btn">
-        //         ✕
-        //         </span>
-        //         <div class="modal__top">
-        //             <h3>0 items</h3>
-        //         </div>
-        //         <div class="modal__middle"></div>
-        //         <div class="modal__bottom"></div>
-        //     </div>
-        // `
 
         const backdrop = createRootElement("div", "backdrop", modalWrapper)
         backdrop.addEventListener('click', this.close)

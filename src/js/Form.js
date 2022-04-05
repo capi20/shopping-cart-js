@@ -2,6 +2,7 @@ import { createRootElement } from './helper'
 import Input from './components/Input'
 import ButtonComponent from './components/ButtonComponent'
 
+// To create signin and register forms
 export default class Form {
     constructor(heading, description, formObj, hookNode) {
         this.hookNode = hookNode

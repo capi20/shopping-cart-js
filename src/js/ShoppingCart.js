@@ -1,10 +1,32 @@
 export default class ShoppingCart {
+    /*cart structure
+    cart = {
+        cart: {
+            product_1_id: {
+                name: "",
+                description: "",
+                imageUrl: "",
+                itemCount: "",
+                ...
+            },
+            product_2_id: {
+                name: "",
+                description: "",
+                imageUrl: "",
+                itemCount: "",
+                ...
+            }
+        }
+        amount: "", -- total amount to pay
+        count: "" -- total items inside the cart
+    }*/
     state = {
         cart: {},
         amount: 0,
         count: 0
     }
 
+    // update cart data and item count after each add/remove item 
     updateCartData(cartData = this.state) {
         this.state = cartData
         const cartCount = document.querySelector('.cart__count')
@@ -13,6 +35,9 @@ export default class ShoppingCart {
         sessionStorage.setItem("CartData", JSON.stringify(this.state))
     }
 
+    /* To add a product in the cart --> will accept complete product object and check if
+    a) product already exists inside the cart --> update count of that product by 1
+    b) otherwise add that product object in the cart */
     addProduct(product) {
         let updatedCart = {}
 
@@ -37,13 +62,13 @@ export default class ShoppingCart {
         return this.state
     }
 
+    // To remove a product from the cart --> will accept only product id and will remove 1 unit of that product from the cart if exists
     removeProduct(productId) {
         const itemObj = this.state.cart[productId]
     
         let updatedCart = {}
         let updatedAmount = 0
         let updatedCount = 0
-        let purchasingState = null
     
         if (itemObj) {
             updatedAmount = this.state.amount - itemObj.price
@@ -56,8 +81,6 @@ export default class ShoppingCart {
             } else {
                 updatedCart = {...this.state.cart, [productId]: {...modifiedData}}
             }
-            
-            purchasingState = updatedCount > 0 ? true : false
         } else {
             console.warn(`Can't remove product (id: ${productId}) as it's not in cart!`)
         }
@@ -65,8 +88,7 @@ export default class ShoppingCart {
         const updatedState = {
             cart: updatedCart,
             amount: updatedAmount,
-            count: updatedCount,
-            purchasing: purchasingState
+            count: updatedCount
         }
         
         this.state = {...this.state, ...updatedState} 

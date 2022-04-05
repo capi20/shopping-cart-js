@@ -11,6 +11,7 @@ import loadHomePage from './pages/homePage'
 import loadProductPage from './pages/productPage'
 import { addCartElements, updateCartElements } from './pages/cartPage'
 
+// class to create instances of ShoppingCart and Modal class so other classes can access their methods
 class App {
   static cartData = {}
   static cartClicks = 0
@@ -18,11 +19,15 @@ class App {
   static isCartChange = false
 
   static init() {
+      // create ShoppingCart and Modal instances
       this.shoppingCart = new ShoppingCart()
       App.cartData = this.shoppingCart.state
       this.modal = new Modal(false)
+
+      // Add modal inside dom
       document.querySelector('body').append(this.modal)
 
+      // get items added in the cart from session storage
       const storedData = JSON.parse(sessionStorage.getItem("CartData"))
       if (storedData) {
         this.cartData = storedData
@@ -30,6 +35,7 @@ class App {
       }
   }
 
+  // open cart
   static openModal() {
     App.cartClicks = App.cartClicks + 1
     this.cartClose = false
@@ -37,10 +43,12 @@ class App {
 
     const modal = document.querySelector('modal-element .modal-wrapper .modal')
 
+    // Add elements inside modal only when user click on the cart logo for the first time
     if (App.cartClicks === 1) {
       addCartElements(modal, this.cartData)
     }
 
+    // check if cart is not empty then render products inside modal
     if (this.cartData.count > 0) {
 
       if (this.isCartChange) {
@@ -60,6 +68,7 @@ class App {
     }
   }
 
+  // To add a product in the cart
   static addProductToCart(product) {
       if (App.cartClicks >= 1 && !this.modal.isOpen && !this.cartClose) {
         this.oldCartData = {...this.cartData, cart:{...this.cartData.cart}}
@@ -70,12 +79,14 @@ class App {
       return this.cartData
   }
 
+  // remove a product from the cart
   static removeProductToCart(productId) {
       this.cartData = this.shoppingCart.removeProduct(productId)
       return this.cartData
   }
 }
 
+// This function will execute first
 function init() {
   App.init()
 
@@ -90,6 +101,7 @@ function init() {
   }
 }
 
+// To open cart by clicking on cart logo at the header
 document.getElementById('cart-logo').addEventListener('click', App.openModal.bind(App))
 
 window.addEventListener("DOMContentLoaded", init);

@@ -14,6 +14,7 @@ export default class ProductItem {
         this.addProductToCart(this.product)
     }
 
+    // To create a product element and render it on page
     render() {
         let productItem = createRootElement("div", "product", this.hookNode);
 

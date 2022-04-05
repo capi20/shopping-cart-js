@@ -1,6 +1,7 @@
 import ButtonComponent from "../components/ButtonComponent"
 import { createRootElement } from "../helper"
 
+// To add cart elements inside modal
 export function addCartElements(modal, cartData) {
     const modalTop = modal.querySelector(".modal__top")
     const cartTop = createRootElement("div", "cart__top", modalTop)
@@ -16,6 +17,7 @@ export function addCartElements(modal, cartData) {
     updateCartElements(modal, cartData)
 }
 
+// To update cart elements inside modal
 export function updateCartElements(modal, cartData) {
 
     modal.querySelector(".modal__top .cart__top h3").textContent = `${cartData.count} items`

@@ -13,6 +13,7 @@ export default class CategoryCard {
         sessionStorage.setItem('currentCategoryId', id)
     }
 
+    // create a category element and render it on home page
     render() {
         const categoryCard = createRootElement("section", "category", this.hookNode)
 

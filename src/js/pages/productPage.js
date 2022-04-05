@@ -8,6 +8,7 @@ export default function loadProductPage(id, addProductFn) {
     loadProductData(id)
 } 
 
+// To fetch products and display them
 export async function loadProductData(id) {
     let response, result
 
