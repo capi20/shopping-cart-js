@@ -1,3 +1,4 @@
+// To create a new DOM element and append it inside it's parent node
 export function createRootElement(tag, cssClasses, hookNode, attributes) {
     const rootElement = document.createElement(tag)
     if (cssClasses) {
@@ -16,6 +17,7 @@ export function createRootElement(tag, cssClasses, hookNode, attributes) {
     return rootElement
 }
 
+// add/remove a class from a particular node
 export function toggleClass(elements, classname, index) {
     for (let el of elements) {
         el.classList.remove(classname)
@@ -23,4 +25,13 @@ export function toggleClass(elements, classname, index) {
     elements[index].classList.add(classname)
 
     return
+}
+
+// display products/categories
+export function displayResult(result, clickCallback, container, Obj) {
+    container.innerHTML = ''
+    
+    for (let r of result) {
+      new Obj(r, clickCallback, container)
+    }
 }

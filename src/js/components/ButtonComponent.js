@@ -16,7 +16,8 @@ export default class ButtonComponent extends HTMLElement {
         this.classes = this.getAttribute("classes");
       }
 
-      const buttonElement = createRootElement("button", `button ${this.classes}`)
+      const buttonElement = document.createElement("button")
+      buttonElement.setAttribute("class", `button ${this.classes}`)
       buttonElement.innerHTML = this.text;
 
       this.appendChild(buttonElement);

@@ -1,7 +1,7 @@
 import ButtonComponent from './components/ButtonComponent'
 import { createRootElement } from './helper'
 
-export default class Product {
+export default class ProductItem {
 
     constructor(product, addProductToCart, hookNode) {
         this.product = product
@@ -14,6 +14,7 @@ export default class Product {
         this.addProductToCart(this.product)
     }
 
+    // To create a product element and render it on page
     render() {
         let productItem = createRootElement("div", "product", this.hookNode);
 

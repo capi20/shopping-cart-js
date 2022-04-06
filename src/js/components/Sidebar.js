@@ -1,10 +1,10 @@
 import cartegories from '../../../server/categories/index.get.json'
 import { createRootElement, toggleClass } from '../helper'
+import { loadProductData } from '../pages/productPage';
 
 export default class Sidebar extends HTMLElement {
-    constructor(fetchProducts) {
+    constructor() {
       super();
-      this.fetchProducts = fetchProducts
       this.shouldDisplay = false 
       this.currentCategory = "Select category"
       this.categoryIndex = 0
@@ -21,7 +21,7 @@ export default class Sidebar extends HTMLElement {
     }
 
     clickHandler(id) {
-        this.fetchProducts('/products', id)  
+        loadProductData(id)  
         this.getCategory()
 
         const sidebarItems = document.querySelectorAll(".sidebar__item")

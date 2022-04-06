@@ -44,7 +44,7 @@ export default class Slider extends HTMLElement {
 
         const sliderDots = createRootElement("div", "slider__dots", slider)
 
-        sliderData.map((el, i) => {
+        sliderData.forEach((el, i) => {
             const banner = createRootElement("div", "slider__container-banner", sliderContainer)
 
             const dot = createRootElement("div", "dot", sliderDots)

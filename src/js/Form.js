@@ -2,6 +2,7 @@ import { createRootElement } from './helper'
 import Input from './components/Input'
 import ButtonComponent from './components/ButtonComponent'
 
+// To create signin and register forms
 export default class Form {
     constructor(heading, description, formObj, hookNode) {
         this.hookNode = hookNode
@@ -21,7 +22,7 @@ export default class Form {
         `
         let formContainer = createRootElement("form", "form__right", formWrapper)
 
-        this.formObj.map((el) => {
+        this.formObj.forEach((el) => {
             formContainer.append(new Input(el.label, el.type))
         })
         
