@@ -22,7 +22,7 @@ export default class Form {
         `
         let formContainer = createRootElement("form", "form__right", formWrapper)
 
-        this.formObj.map((el) => {
+        this.formObj.forEach((el) => {
             formContainer.append(new Input(el.label, el.type))
         })
         

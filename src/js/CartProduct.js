@@ -19,7 +19,7 @@ export default class CartProduct {
     render() {
         const cartContainer = this.hookNode.querySelector(".cart-wrapper")
 
-        Object.keys(this.productList).map(el => {
+        Object.keys(this.productList).forEach(el => {
             const currentEl = document.getElementById(el)
             if (!currentEl) {
                 this.productRender(this.productList[el], cartContainer)
