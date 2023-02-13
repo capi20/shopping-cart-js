@@ -1,6 +1,6 @@
 # Sbka Bazaar
 
-An online store where you can shop for your daily needs. [Click here](https://sbka-bazaar.herokuapp.com/) to visit the site
+An online store where you can shop for your daily needs. [Click here](https://sbka-bazaar.onrender.com/) to visit the site
 
 Tech Stack
 
